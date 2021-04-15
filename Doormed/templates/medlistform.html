@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title> {{ title }} </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  </head>
+  {% block body %}
+  {% include '__message.html' %}
+  <div class="container">
+  <form class="Med search form" action="/mform" method="post">
+  <h2> Entry for the shops to search medicines: </h2>
+  <div class="table-responsive">
+    <table class="table table-borderless" id="review">
+    <tr>
+    <td>
+    <div class="form-group purple-border">
+      <input placeholder="Enter Shop Name" class="form-control" type="text" name="shop" id="shop" required autofocus>
+    </div>
+    </td>
+    </tr>
+        <tr>
+    <td>
+    <div class="form-group purple-border">
+      <input placeholder="Enter Category" class="form-control" type="text" name="cat" id="cat" required autofocus>
+    </div>
+    </td>
+    </tr>
+     <tr>
+    <td>
+    <div class="form-group purple-border">
+      <input placeholder="Enter Medicine Name" class="form-control" type="text" name="mname" id="mname" required autofocus>
+    </div>
+    </td>
+    </tr>
+        <tr>
+    <td>
+    <div class="form-group purple-border">
+      <input placeholder="Enter Description" class="form-control" type="text" name="desc" id="desc" required autofocus>
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <tr>
+    <td>
+    <div class="form-group purple-border">
+      <input placeholder="Enter Image" class="form-control" type="file" name="img" id="img" required autofocus>
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="form-group purple-border">
+      <input placeholder="Enter Price" class="form-control" type="number" name="price" id="price" required autofocus>
+    </div>
+    </td>
+    </tr>
+     <tr>
+     <td>
+     <div class="form-group">
+              <button type="submit" class="btn btn-primary" id="sendMessageButton">Submit</button>
+            </div>
+     </td>
+     </tr>
+     </table>
+     </div>
+     </form>
+     </div>
+
+
+
+  {% endblock %}

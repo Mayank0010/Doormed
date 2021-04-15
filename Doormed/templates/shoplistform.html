@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title> {{ title }} </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  </head>
+  {% block body %}
+  {% include '__message.html' %}
+  <div class="container">
+  <form class="Shop search form" action="/sform" method="post">
+  <h2> Search shop by medicine name: </h2>
+  <div class="table-responsive">
+    <table class="table table-borderless" id="review">
+    <tr>
+    <td>
+    <div class="form-group purple-border">
+      <input placeholder="Enter Medicine Name" class="form-control" type="text" name="mname" id="mname" required autofocus>
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <tr>
+    <td>
+    <div class="form-group purple-border">
+      <input placeholder="Enter Shop Name" class="form-control" type="text" name="shop" id="shop" required autofocus>
+    </div>
+    </td>
+    </tr>
+    <td>
+    <div class="form-group purple-border">
+      <input placeholder="Enter Address" class="form-control" type="text" name="add" id="add" required autofocus>
+    </div>
+    </td>
+    </tr>
+    <td>
+    <div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+  <label class="form-check-label" for="inlineRadio1"> Available </label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+  <label class="form-check-label" for="inlineRadio2"> Not-available </label>
+</div>
+</td>
+</tr>
+     <tr>
+     <td>
+     <div class="form-group">
+              <button type="submit" class="btn btn-primary" id="sendMessageButton">Submit</button>
+            </div>
+     </td>
+     </tr>
+     </table>
+     </div>
+     </form>
+     </div>
+
+
+
+  {% endblock %}

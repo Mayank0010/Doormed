@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <title> {{ title }} </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/main.css') }}">
+  </head>
+  {% block body %}
+   <div class="container h-100">
+      <div class="d-flex justify-content-center h-100">
+        <div class="searchbar">
+          <input class="search_input" type="text" name="" placeholder="Search...">
+          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+        </div>
+      </div>
+    </div>
+    <br>
+  <div class="container">
+  <h2> List of shops: </h2>
+  <div class="table-responsive">
+  <table class="table table-bordered table-hover">
+  <thead class="table-info"> 
+  <tr>
+  <th> Shop Name </th>
+  <th> Address </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td><a href="#"> Apollo Pharmacy <br></a>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star"></span></td>
+  <td> Chandani Chowk, Delhi </td>
+  <tr>
+  <td><a href="#"> Dutta Medical Hall </a><br>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star"></span></td>
+  <td> Chandani Chowk, Delhi </td>
+  </tr>
+  <tr>
+  <td><a href="#"> Raj Pharmacy </a><br>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span></td>
+  <td> Main Road, Delhi </td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+  </div>
+  {% endblock %}
+</html>
