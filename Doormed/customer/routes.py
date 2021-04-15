@@ -66,7 +66,7 @@ def main(id):
         for sho in shops1:
             prod = Products.query.filter_by(shop_id=sho.id).all()           
             for p in prod:
-                if q in p.name:
+                if q.lower in p.name.lower:
                     pros.append(p)
                     shop1.append(sho)
                 # pros = Products.query.filter(Products.name.contains(q))

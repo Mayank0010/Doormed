@@ -38,5 +38,6 @@ from Doormed.main import routes
 from Doormed.seller import routes
 from Doormed.customer import routes
 from Doormed.contact import routes
+from Doormed.errors import handlers
 
 # from Doormed.cart import routes
