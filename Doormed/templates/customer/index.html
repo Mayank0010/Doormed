@@ -33,7 +33,7 @@
                         </li>
                         {% if user %}
                         <li class="nav-link" style="--i: 1.25s">
-                            <a href="/account/{{ user.id }}">ACCOUNT</a>
+                            <a href="/main/{{ user.id }}/account">ACCOUNT</a>
 
                         </li>
 
@@ -98,7 +98,7 @@
 
             <div class="content">
                 <div class="imgBx">
-                    <img src="medo.jpg">
+                    <a href="{{ url_for('shop_details',name=shop.shop_name) }}"><img src="medo.jpg"></a>
                 </div>
                 <div class="text">
                     <h3>{{shop.shop_name}}</h3>

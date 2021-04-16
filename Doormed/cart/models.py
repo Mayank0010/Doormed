@@ -1,8 +1,8 @@
 from Doormed import db
+from Doormed.seller.models import Products
 
 
-
-class Cart(db.Model):
+class Cartitem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), unique=False, nullable=False)
-    
+    quantity = db.Column(db.Integer, nullable=False, default=1)
+    product_id = db.Column(db.Integer, db.ForeignKey('products.id'),nullable=False)    

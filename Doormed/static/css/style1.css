@@ -438,6 +438,7 @@ body{
     background-size: cover;
     flex-direction: column;
     background-attachment: fixed; 
+    overflow: hidden;
 }
 .landing p{
     margin-top:5rem;

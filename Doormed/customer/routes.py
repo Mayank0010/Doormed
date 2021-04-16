@@ -1,8 +1,8 @@
 from Doormed import app, db, bcrypt
 from flask import render_template,redirect,url_for,request,flash
-from .models import Register_user
+from Doormed.models import Register_user
 from flask_login import login_user, current_user, logout_user, login_required
-from Doormed.seller.models import Register_seller, Products
+from Doormed.models import Register_seller, Products
 
 @app.route('/customer_page')
 def customer():
@@ -20,6 +20,11 @@ def reg_user():
         password = request.form.get("Password")
 
         hash_password = bcrypt.generate_password_hash(password)
+        email1 = Register_user.query.filter_by(email = email).first()
+        no1 = Register_user.query.filter_by(number = number).first()
+        if email1 or no1:
+            flash(f'This email or phone number is already taken....Change that one')
+            return redirect(url_for('reg_user'))
 
         entry = Register_user(name=name, email=email, city=city, pincode=pin, number=number, password=hash_password)
         db.session.add(entry)
@@ -66,15 +71,34 @@ def main(id):
         for sho in shops1:
             prod = Products.query.filter_by(shop_id=sho.id).all()           
             for p in prod:
-                if q.lower in p.name.lower:
+                if q.lower() in p.name.lower():
                     pros.append(p)
                     shop1.append(sho)
                 # pros = Products.query.filter(Products.name.contains(q))
                 # shops.append(shops1)
-        return render_template('customer/searchmed.html', shop_and_prod = zip(shop1,pros), products=pros,shop=shop1,q=q)
+        return render_template('customer/searchmed.html', shop_and_prod = zip(shop1,pros), products=pros,shop=shop1,q=q,id=id)
     else:
         shops = Register_seller.query.filter_by(city = user.city)
     return render_template('customer/index.html', shops = shops, user = user)
+
+@app.route('/main/<int:id>/search',methods=['GET','POST'])
+def search(id):
+    user = Register_user.query.filter_by(id = id).first()
+    pros = []
+    shop1 = []
+    q = request.args.get('q')
+    if q:
+        shops1 = Register_seller.query.filter_by(city=user.city).all()
+        for sho in shops1:
+            prod = Products.query.filter_by(shop_id=sho.id).all()           
+            for p in prod:
+                if q.lower() in p.name.lower():
+                    pros.append(p)
+                    shop1.append(sho)
+                # pros = Products.query.filter(Products.name.contains(q))
+                # shops.append(shops1)
+        return render_template('customer/searchmed.html', shop_and_prod = zip(shop1,pros), products=pros,shop=shop1,q=q,id=id)
+    return redirect(url_for('main',id=id))
 
 @app.route('/<string:name>')
 @login_required
@@ -90,4 +114,22 @@ def medicine(name):
     shop = Register_seller.query.filter_by(id = products.shop_id)
     return render_template("searchmed.html",products=products, shops=shop)
 
+@app.route('/main/<int:id>/account')
+@login_required
+def account(id):
+    user = Register_user.query.filter_by(id=id).first()
+    return render_template("customer/account.html",user=user)
+
+@app.route('/main/<int:id>/account/update',methods=['GET','POST'])
+@login_required
+def update(id):
+    user = Register_user.query.filter_by(id=id).first()
+    if request.method == 'POST':
+        user.email = request.form.get('email')
+        user.number = request.form.get('num')
+        user.address = request.form.get('add')
+        user.city = request.form.get('city')
+        db.session.commit()
+        return redirect(url_for('account',id=id))
+    return render_template("customer/account.html",user=user)
 

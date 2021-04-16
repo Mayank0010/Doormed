@@ -12,16 +12,20 @@
 <div class="box" style="background: linear-gradient(to top, rgb(104, 222, 226), rgb(241, 195, 195)); height: 10vh;">
     <div class="container h-100">
         <div class="d-flex justify-content-center h-100">
+            <form action="/main/{{id}}/search" method="GET">
             <div class="searchbar">
-                <input class="search_input" type="text" name="" placeholder="Search...">
-                <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                <input class="search_input" type="text" name="q" placeholder="Search...">
+                <button class="btn btn-sm btn-success" type="submit" style="background: none;
+                                border: none;"><i class="fas fa-search"></i></button>
             </div>
+            </form>
         </div>
     </div>
     <br>
-    <h2 style="color:blue; text-align: center;"> search result for {{q}} :</h2>
+    <h2 style="color:blue; text-align: center;"> search result for "{{q}}" :</h2>
     <br>
     <div class="container">
+        {% if products %}
         <div class="table-responsive">
             <table class="table table-borderless table-hover table-fixed">
                 <thead class="table-info">
@@ -37,6 +41,7 @@
                 <tbody>
 
                     <tr>
+                        
                         {% for sh, product in shop_and_prod %}
                         <td> {{sh.shop_name}} </td>
                         
@@ -52,6 +57,9 @@
                         <td> <button type="submit" class="btn btn-primary"> Add + </button></td>
                     </tr>
                     {% endfor %}
+                    {% else %}
+                    <h2 style="text-align: center;">"{{q}}" is not available in any pharmacy now</h2>
+                    {% endif %}
                 </tbody>
             </table>
            

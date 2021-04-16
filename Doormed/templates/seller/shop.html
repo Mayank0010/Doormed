@@ -2,6 +2,7 @@
 
 
 {% block header %}
+<link rel="stylesheet" href="{{url_for('static', filename = 'index.css')}}">
 <link href="{{ url_for('static', filename = 'css/ownShop.css')}}" rel="stylesheet" type="text/css" />
 {% endblock %}
 
@@ -27,14 +28,35 @@
                 <a class="btn btn-sm btn-success" href="/shops/addproduct">Add product</a>
                 <a class="btn btn-sm btn-success">Orders</a>
                 <a class="btn btn-sm btn-success" href="/logout_seller">Logout</a>
-            </div>
-
+            </div><br>
+            
         </div>
 
     </div>
     <div class="msg ml-5">
         {% include 'message.html' %}
     </div>
+    <input style="float: right; background-color: crimson; color: white; outline: none;height:fit-content; width: 10%;
+                  border-radius: 8px;" action="action" onclick="window.history.go(-1); return false;" type="submit"
+                value="Back" />
+            <a class="btn btn-sm btn-success float-right m-4" id="button">Update your Acoount</a>
+            <div class="popup">
+                <div class="content">
+                    <i class="fas fa-user fa-4x" id="user"></i>
+                    <div class="close">
+                        <i class="fas fa-times" style="color: black;"></i>
+                    </div>
+                    <form action="/shops/update" method="POST">
+                        <input type="text" name="email" placeholder="Email" value="{{seller.email}}" required>
+                        <input type="number" name="num" placeholder="Phone No" value="{{seller.number}}" required>
+                        <input type="text" name="add" placeholder="Address" value="{{seller.address}}" required>
+                        <input type="text" name="city" placeholder="City" value="{{seller.city}}" required>
+                        <input type="submit" value="Update" placeholder="Update" style="background-color: aqua;">
+
+                    </form>
+                </div>
+            </div>
+
     <div class="list">
         <div class="conatiner mt-5 ml-6" style="margin-left: 6rem; margin-right: 4rem;">
 
@@ -117,4 +139,12 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById("button").addEventListener('click', function () {
+        document.querySelector(".popup").style.display = "flex";
+    })
+    document.querySelector(".close").addEventListener("click", function () {
+        document.querySelector(".popup").style.display = "none";
+    })
+</script>
 {% endblock %}

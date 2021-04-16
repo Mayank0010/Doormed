@@ -34,7 +34,11 @@
           <div class='row'>
             <center>
               <div class='row'>
-                  <a href="/customer_page"><button >CUSTOMER</button></a>
+                {% if id %}
+                  <a href="/main/{{id}}"><button >CUSTOMER</button></a>
+                {% else %}
+                <a href="/customer_page"><button >CUSTOMER</button></a>
+                {% endif %}
               </div>
             </center>
           </div>

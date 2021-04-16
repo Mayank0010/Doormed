@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% block header %}
+
+<link rel="stylesheet" href="{{url_for('static', filename = 'index.css')}}">
+{% endblock %}
+
+
+{% block content %}
+<div class="content">
+    <div class="head">
+        <div class="imgBox">
+
+        </div>
+        <div class="bio">
+            <div class="name">
+                <h2>{{user.name}}</h2>
+            </div>
+            <div class="intro">
+                <p>Email: <b>{{user.email}}</b></p>
+                <p>Number: <b>{{user.number}}</b></p>
+                <p>Address: <b>{{user.address}}</b></p>
+                <p>City: <b>{{user.city}}</b></p>
+                <p>Pincode: <b>{{user.pincode}}</b></p>
+
+
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+    <input style="float: right; background-color: crimson; color: white; outline: none; height:40px; width: 5%;
+                  border-radius: 8px;" action="action" onclick="window.history.go(-1); return false;" type="submit"
+        value="Back" />
+    <a class="btn btn-sm btn-success float-right m-4" id="button">Update your Acoount</a>
+    <div class="popup">
+        <div class="content">
+            <i class="fas fa-user fa-4x" id="user"></i>
+            <div class="close">
+                <i class="fas fa-times" style="color: black;"></i>
+            </div>
+            <form action="/main/{{user.id}}/account/update" method="POST">
+                <input type="text" name="email" placeholder="Email" value="{{user.email}}" required>
+                <input type="number" name="num" placeholder="Phone No" value="{{user.number}}" required>
+                <input type="text" name="add" placeholder="Address" value="{{user.address}}" required>
+                <input type="text" name="city" placeholder="City" value="{{user.city}}" required>
+                <input type="submit" value="Update" placeholder="Update" style="background-color: aqua;">
+
+            </form>
+        </div>
+    </div>
+    <div class="main">
+        <div class="container">
+
+            <h2 style="color: blue; padding: 1.5rem; text-align: center;">Purchase History!</h2>
+
+            <table class="table table-sm table-condensed table-striped table-hover" style="text-align: center" ;>
+                <thead>
+                    <th>No</th>
+
+                    <th>Invoice No</th>
+                    <th>Image</th>
+                    <th>Products</th>
+
+                    <th>Shops</th>
+                    <th>Date</th>
+                    <th>Quantity</th>
+                    <th>Price(Rs)</th>
+                    <th>Total</th>
+
+
+
+
+                </thead>
+                <tbody>
+
+
+                    <tr>
+
+                        <td>1</td>
+                        <td>12563grg</td>
+                        <td><img src="" alt="no" width="40" height="30"></td>
+                        <td>Famocid</td>
+                        <td>Apollo Clinic</td>
+                        <td>16.04.21</td>
+                        <th>5</th>
+
+
+
+
+                        <td>120</td>
+                        <td>600</td>
+
+
+                    </tr>
+
+                    <!-- Button trigger modal -->
+
+
+                    <!-- Modal -->
+
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById("button").addEventListener('click', function () {
+        document.querySelector(".popup").style.display = "flex";
+    })
+    document.querySelector(".close").addEventListener("click", function () {
+        document.querySelector(".popup").style.display = "none";
+    })
+</script>
+{% endblock %}

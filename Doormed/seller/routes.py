@@ -1,7 +1,7 @@
 from Doormed import app, db, bcrypt, migrate
 from flask import render_template, redirect, url_for, request, flash
 from flask_login import login_user, current_user, logout_user, login_required
-from .models import Register_seller,Products
+from Doormed.models import Register_seller,Products
 
 
 @app.route('/reg_seller', methods=['GET', 'POST'])
@@ -20,6 +20,11 @@ def reg_seller():
         image = request.form.get("fileupload")
 
         hash_password = bcrypt.generate_password_hash(password)
+        email1 = Register_seller.query.filter_by(email = email).first()
+        no1 = Register_seller.query.filter_by(number = number).first()
+        if email1 or no1:
+            flash(f'This email or phone number is already taken....Change that one')
+            return redirect(url_for('reg_seller'))
 
         entry = Register_seller(name=name, email=email, password=hash_password,
                                 number=number, address=address, city=city,
@@ -60,6 +65,21 @@ def shops():
     seller = Register_seller.query.filter_by(id = current_user.id ).first()
     products = Products.query.filter_by(shop_id = current_user.id)
     return render_template('seller/shop.html', seller = seller, products=products)
+
+@app.route('/shops/update',methods=['GET','POST'])
+@login_required
+def update_seller():
+    seller = Register_seller.query.filter_by(id = current_user.id ).first()
+    products = Products.query.filter_by(shop_id = current_user.id)
+    if request.method == 'POST':
+        seller.email = request.form.get('email')
+        seller.number = request.form.get('num')
+        seller.address = request.form.get('add')
+        seller.city = request.form.get('city')
+        db.session.commit()
+        return redirect(url_for('shops',id=seller.id))
+    return redirect(url_for('shops',id=seller.id))
+
 
 @app.route('/shops/addproduct', methods=['GET','POST'])
 def addprod():
