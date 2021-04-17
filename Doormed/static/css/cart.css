@@ -25,8 +25,12 @@
 .whole{
     display: flex;
     background-color: blanchedalmond;
-    
+    align-items: center;
+    justify-content: center;
     width: 80%;
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 2rem;
 }
 
 #COD{
@@ -80,7 +84,7 @@ td{
 td input{
     width: 30px;
     height: 15px;
-    padding: 5px;
+    /* padding: 5px; */
 }
 
 td p{
@@ -148,9 +152,7 @@ th:last-child{
   font-weight: 600;
   margin-top: 15px;
 }
-.box p{
-  /* margin-top: -20px; */
-}
+
 .box-2 h3{
     border-bottom: 1px solid black;
     background-color: #fff;

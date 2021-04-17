@@ -29,58 +29,22 @@
                 <th>Subtotal</th>
                 <th>Delete</th>
             </tr>
+            {% for item,ch in items %}
             <tr>
-                <td>1</td>
+                <td>{{loop.index}}</td>
                 <td>
                     <div class="cart-info">
                         <img src="static/images/image.jpg">
-                        <p>Paracetamol</p>
+                        <p>{{item.name}}</p>
                     </div>
                 </td>
-                <td>50</td>
-                <td><input type="number" value="1"></td>
-                <td>550.00</td>
+                <td>{{item.price}}</td>
+                <td><input type="number" value="{{ch.quantity}}"></td>
+                <td>{{item.price * ch.quantity}}</td>
                 <td><a href="#">Remove</a></td>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>
-                    <div class="cart-info">
-                        <img src="static/images/image.jpg">
-                        <p>Paracetamol</p>
-                    </div>
-                </td>
-                <td>50</td>
-                <td><input type="number" value="1"></td>
-                <td>550.00</td>
-                <td><a href="#">Remove</a></td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>
-                    <div class="cart-info">
-                        <img src="static/images/image.jpg">
-                        <p>Paracetamol</p>
-                    </div>
-                </td>
-                <td>50</td>
-                <td><input type="number" value="1"></td>
-                <td>550.00</td>
-                <td><a href="#">Remove</a></td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>
-                    <div class="cart-info">
-                        <img src="static/images/image.jpg">
-                        <p>Paracetamol</p>
-                    </div>
-                </td>
-                <td>50</td>
-                <td><input type="number" value="1"></td>
-                <td>550.00</td>
-                <td><a href="#">Remove</a></td>
-            </tr>
+            {% endfor %}
+            
         </table>
 
         <div class="total">
@@ -105,12 +69,12 @@
     <div class="checkout">
         <h1>Secure Checkout</h1>
         <div class="box">
-            <h4>Amit Kumar</h4>
+            <h4>{{user.name}}</h4>
             <p>You are logged in</p>
         </div>
         <div class="box">
             <h4>Delivery Address</h4>
-            <p><b>Home</b> Flat-L004, Homes 121, Noida</p>
+            <p><b>Home</b> {{user.address}} {{user.pincode}}</p>
         </div>
         <div class="box box-2 ">
             <h3>Select Payment Method</h3>
@@ -126,6 +90,9 @@
 
     </div>
 </div>
+<footer style="background-color: rgb(0, 0, 0); color: rgb(252, 0, 0); text-align: center;padding: 5px;">Made with
+    &#x2764
 
+</footer>
 
 {% endblock %}

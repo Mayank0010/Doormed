@@ -54,7 +54,11 @@
                         {% endif %}
                         <td> <img src="/static/img/amoxil.png" width="130px" height="100px"> </td>
                         <td> {{product.price}} </td>
-                        <td> <button type="submit" class="btn btn-primary"> Add + </button></td>
+                        <td> <form action="/main/{{id}}/addcart" method="POST"> 
+                            <input type="hidden" name="pro_id" value="{{product.id}}">
+                          <input type="number" min="1" value="1" name="quantity" style="max-width: 60px;">
+                          <button type="submit" class="btn btn-primary"> Add + </button>
+                        </form></td>
                     </tr>
                     {% endfor %}
                     {% else %}

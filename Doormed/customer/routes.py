@@ -15,6 +15,7 @@ def reg_user():
     if request.method == "POST":
         name = request.form.get("Name")
         email = request.form.get("EmailID")
+        address = request.form.get("Address")
         city = request.form.get("City")
         pin = request.form.get("PinCode")
         number = request.form.get("MobileNumber")
@@ -27,7 +28,7 @@ def reg_user():
             flash(f'This email or phone number is already taken....Change that one')
             return redirect(url_for('reg_user'))
 
-        entry = Register_user(name=name, email=email, city=city.lower(), pincode=pin, number=number, password=hash_password)
+        entry = Register_user(name=name, email=email,address=address, city=city.lower(), pincode=pin, number=number, password=hash_password)
         db.session.add(entry)
         db.session.commit()
         flash(f'{name} you are registered successfully in our database ', 'success')
