@@ -1,7 +1,7 @@
 from enum import unique
 from Doormed import db,login_seller, login_manager
 from flask_login import UserMixin
-  
+from datetime import datetime
 
 
 @login_manager.user_loader
@@ -61,6 +61,17 @@ class Register_seller(db.Model, UserMixin):
 
     def __repr__(self):
         return '<Register_seller %r>' % self.name
+
+class Contact(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), unique=False, nullable=False)
+    email = db.Column(db.String(80), unique=False, nullable=False)
+    phone = db.Column(db.Integer, unique=False, nullable=False)
+    query = db.Column(db.Text, unique=False, nullable=False)
+    date = db.Column(db.DateTime)
+
+    def __repr__(self):
+        return f"Contact('{self.name}' , '{self.email}' , '{self.phone}' , '{self.query}')"
 
 class Cartitem(db.Model):
     id = db.Column(db.Integer, primary_key=True)

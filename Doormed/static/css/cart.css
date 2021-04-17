@@ -25,7 +25,8 @@
 .whole{
     display: flex;
     background-color: blanchedalmond;
-    width: 100%;
+    
+    width: 80%;
 }
 
 #COD{
@@ -44,7 +45,7 @@ table{
 }
 
 .order{
-    width: 100%;
+    /* width: 60%; */
     background-color: rgb(218, 205, 205);
 }
 
@@ -60,27 +61,7 @@ table{
     margin-bottom: 10px;
 }
 
-/* .iuEuJQ {
-    transition: width 0.2s ease 0s;
-    width: 100%;
-    margin-bottom: 2rem;
-    box-shadow: rgb(0 0 0 / 15%) 0px 4px 18px;
-    background-color: white;
-    z-index: 10;
-}
 
-.elxuhW {
-    min-width: 15rem;
-    min-height: 44px;
-    display: inline-flex;
-    -webkit-box-align: stretch;
-    align-items: stretch;
-    border-radius: 0.6rem;
-    background: transparent;
-    padding: 0px;
-    border: none;
-    cursor: pointer;
-} */
 
 
 th{
@@ -158,7 +139,7 @@ th:last-child{
 }
 .box-2 p{
     margin-left: 20px;
-    margin-top: -15px;
+    /* margin-top: -15px; */
     color: red;
     font-weight: 800;
 }
@@ -168,7 +149,7 @@ th:last-child{
   margin-top: 15px;
 }
 .box p{
-  margin-top: -20px;
+  /* margin-top: -20px; */
 }
 .box-2 h3{
     border-bottom: 1px solid black;

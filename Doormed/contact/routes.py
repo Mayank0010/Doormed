@@ -1,5 +1,5 @@
 from Doormed import app,db, mail
-from .models import Contact
+from Doormed.models import Contact
 from flask import render_template,redirect,url_for,request,flash
 from threading import Thread
 from flask_mail import Mail, Message

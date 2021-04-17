@@ -9,9 +9,10 @@
 {% block content %}
   <br />
   <br />
-  {% include 'message.html' %}
+  
   <div class="login-card">
     <div class="log_head">
+      <h5>{% include 'message.html' %}</h5>
       <h1>LOGIN</h1>
 
       <img src="{{ url_for('static', filename = 'images/lock.png')}}" alt="lock" class="lock" />

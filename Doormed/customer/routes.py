@@ -4,6 +4,7 @@ from Doormed.models import Register_user
 from flask_login import login_user, current_user, logout_user, login_required
 from Doormed.models import Register_seller, Products
 
+
 @app.route('/customer_page')
 def customer():
     shop = Register_seller.query.all()
@@ -26,7 +27,7 @@ def reg_user():
             flash(f'This email or phone number is already taken....Change that one')
             return redirect(url_for('reg_user'))
 
-        entry = Register_user(name=name, email=email, city=city, pincode=pin, number=number, password=hash_password)
+        entry = Register_user(name=name, email=email, city=city.lower(), pincode=pin, number=number, password=hash_password)
         db.session.add(entry)
         db.session.commit()
         flash(f'{name} you are registered successfully in our database ', 'success')
@@ -67,7 +68,7 @@ def main(id):
     shop1 = []
     q = request.args.get('q')
     if q:
-        shops1 = Register_seller.query.filter_by(city=user.city).all()
+        shops1 = Register_seller.query.filter_by(city=user.city.lower()).all()
         for sho in shops1:
             prod = Products.query.filter_by(shop_id=sho.id).all()           
             for p in prod:
@@ -78,7 +79,7 @@ def main(id):
                 # shops.append(shops1)
         return render_template('customer/searchmed.html', shop_and_prod = zip(shop1,pros), products=pros,shop=shop1,q=q,id=id)
     else:
-        shops = Register_seller.query.filter_by(city = user.city)
+        shops = Register_seller.query.filter_by(city = user.city.lower())
     return render_template('customer/index.html', shops = shops, user = user)
 
 @app.route('/main/<int:id>/search',methods=['GET','POST'])
@@ -88,7 +89,7 @@ def search(id):
     shop1 = []
     q = request.args.get('q')
     if q:
-        shops1 = Register_seller.query.filter_by(city=user.city).all()
+        shops1 = Register_seller.query.filter_by(city=user.city.lower()).all()
         for sho in shops1:
             prod = Products.query.filter_by(shop_id=sho.id).all()           
             for p in prod:

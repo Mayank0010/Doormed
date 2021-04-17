@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_mail import Mail, Message
+from flask_admin import Admin
 import os
 
 app = Flask(__name__)
@@ -24,6 +25,9 @@ app.config['ADMIN'] = os.environ.get('ADMIN')
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 mail = Mail(app)
+
+admin = Admin(app)
+
 migrate = Migrate(app,db)
 login_manager = LoginManager(app)
 login_manager.login_view = 'user_login'
@@ -40,4 +44,4 @@ from Doormed.customer import routes
 from Doormed.contact import routes
 from Doormed.errors import handlers
 
-# from Doormed.cart import routes
+from Doormed.cart import routes
