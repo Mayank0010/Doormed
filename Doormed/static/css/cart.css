@@ -85,12 +85,10 @@ td input{
     width: 30px;
     height: 15px;
     /* padding: 5px; */
+    margin-left: 1rem;
 }
 
-td p{
-    padding: 15px;
-    font-size: 20px;
-}
+
 
 td img {
     width: 60px;

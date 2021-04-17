@@ -20,7 +20,7 @@
             <h5>Apollo Pharmacy</h5>
             <p>Homes 121, Sector 121, Noida</p>
         </div>
-        <table class="tab">
+        <table class="table table-sm table-condensed table-striped table-hover">
             <tr>
                 <th>S No</th>
                 <th>Product Name</th>
@@ -29,18 +29,18 @@
                 <th>Subtotal</th>
                 <th>Delete</th>
             </tr>
+            {% set ns = namespace(sub=0) %}
+            
             {% for item,ch in items %}
+            
             <tr>
                 <td>{{loop.index}}</td>
-                <td>
-                    <div class="cart-info">
-                        <img src="static/images/image.jpg">
-                        <p>{{item.name}}</p>
-                    </div>
-                </td>
+                <td> <p>{{item.name}}</p> </td>
                 <td>{{item.price}}</td>
                 <td><input type="number" value="{{ch.quantity}}"></td>
                 <td>{{item.price * ch.quantity}}</td>
+                {% set ns.sub = ns.sub + item.price * ch.quantity %}
+                
                 <td><a href="#">Remove</a></td>
             </tr>
             {% endfor %}
@@ -50,17 +50,17 @@
         <div class="total">
             <table>
                 <tr>
-                    <td>Subtotal</td>
-                    <td>200.00</td>
+                    <td>Total</td>
+                    <td>{{ns.sub}}</td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>Discount</td>
                     <td>20.00</td>
-                </tr>
-                <tr id="tot">
+                </tr> -->
+                <!-- <tr id="tot">
                     <td>total</td>
                     <td>180.00</td>
-                </tr>
+                </tr> -->
             </table>
         </div>
 
