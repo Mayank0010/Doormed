@@ -1,58 +1,58 @@
-{% extends 'base.html' %}
-
+{% extends 'base.html'%}
 {% block header %}
-<link href="static/login.css" rel="stylesheet" type="text/css" /> 
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<title> SELLER LOGIN </title>
+<link rel="stylesheet" href="{{url_for('static', filename='style.css') }}" type="text/css">
 {% endblock %}
-  
-
-
 {% block content %}
-  <br />
-  <br />
+{% include 'message.html' %}
+<div class="container1">
+  <div class="wrapper">
+  <center><div class="header-text">Welcome to Doormed </div></center>
+  <hr style="background: #fff; width: 76%; margin-top: -7px;">
+  <form action="{{ url_for('seller_user')}}" method="post" enctype="multipart/form-data">
+  <div class="table-responsive">
+  <table>
+  <tr><td> Email </td> </tr>
+  <tr>
+ <td> 
+ <input type="email"  name="loginid"  placeholder="Enter your email" required></td>
+  </tr>
   
-  <div class="login-card">
-    <div class="log_head">
-      <h5>{% include 'message.html' %}</h5>
-      <h1>LOGIN</h1>
+  <tr><td> Password </td> </tr>         
+  <tr>
 
-      <img src="{{ url_for('static', filename = 'images/lock.png')}}" alt="lock" class="lock" />
-    </div>
+  <td><input type="password"  name="pass" placeholder="Enter your password" required></td>
+  </tr>
+ 
+  <tr>
+  <td><input type="checkbox" name="remember" id="rem" value="Remember me">
+  <label for="rem"> </label ><span>Remember me</span></td>
+  </tr>
 
-    <div class="log_body">
-      <form action="{{ url_for('seller_user')}}" method="POST">
-        <table width="200" border="0" align="center">
-          <tr>
-            <td><input type="email" name="loginid" class="log_user" placeholder="username"></td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td><input type="password" name="pass" class="log_Pass" placeholder="password"></td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td style="color:cornsilk;"><input name="remember" type="checkbox" value="Remember Me"> Forgot Password</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td><input type="submit" name="login" class="login-submit" value="SIGN IN"></td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td style="color:cornsilk;">Don't have an account ? <a href="/reg_seller" rel="register">Register Here</a>
-            </td>
-          </tr>
-        </table>
-
-      </form>
-    </div>
-
+  <tr>
+  <td><center><button class="btn btn-dark"> Login </button></center></td>
+  </tr>
+  <tr>
+  <td style="text-align:center">
+  <p> Still not a member?
+  <a href="/reg_seller" style="color: #fff">Sign up </a></p>
+  </td>
+  </tr>
+  </table>
   </div>
+  </form>
+  </div>
+</div>
+<div class="container">
+
+<p><h2 style="font-size:3vw;"><b> Leave all the work upon us and get a hassle free work experience with Doormed </b></h2></p>
+<br>
+<p style="font-size:1.5vw;"> Get connected with remote patients to increase your sales and earn more seamlessly </p>
+
+</div>
 {% endblock %}
+
